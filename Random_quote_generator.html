@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <script>
+      const QUOTEBANK = [
+        {
+          quote: "You are the shuckiest shuck faced shuck in the world!",
+          author: "James Dashner",
+        },
+        {
+          quote:
+            "But that was life: Nobody got a guided tour to their own theme park. You had to hop on the rides as they presented themselves, never knowing whether you would like the one you were in line for...or if the bastard was going to make you throw up your corn dog and your cotton candy all over the place.",
+          author: "J.R. Ward",
+        },
+        {
+          quote: "Her name badge read: Hello! My name is DIE, DEMIGOD SCUM",
+          author: "Rick Riordan",
+        },
+        {
+          quote: "Insane means fewer cameras",
+          author: "Ally Carter",
+        },
+        {
+          quote:
+            "A musician must make music, an artist must paint, a poet must write, if he is to be ultimately at peace with himself. What a man can be, he must be",
+          author: "Abraham Maslow",
+        },
+        {
+          quote: "I'm about as intimidating as a butterfly.",
+          author: "Dan Howell",
+        },
+        {
+          quote:
+            "Never ask an elf for help; they might decide your better off dead, eh?",
+          author: "Christopher Paolini",
+        },
+        {
+          quote: "Hand me my pants",
+          author: "Michael Grant",
+        },
+        {
+          quote: "Act first, explain later",
+          author: "Dan Brown",
+        },
+        {
+          quote: "My melon soul Crushed by your Gallagher of apathy",
+          author: "David Wong",
+        },
+      ];
+      window.onload = init;
+      function init() {
+        quoteGenerator();
+      }
+      function quoteGenerator() {
+        let quoteSize = QUOTEBANK.length;
+        let randomIndex = Math.floor(Math.random() * quoteSize);
+        let randomQuoteData = QUOTEBANK[randomIndex].quote;
+        let randomAuthorData = QUOTEBANK[randomIndex].author;
+        let twitterLink =
+          "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=%22";
+        let quoteInApiFormat = randomQuoteData.replace(/ /g, "%20");
+        let authorInApiFormat = randomAuthorData.replace(/ /g, "%20");
+        twitterLink += quoteInApiFormat + " -" + authorInApiFormat;
+        console.log(twitterLink);
+        document.getElementById("text").innerText = randomQuoteData;
+        document.getElementById("author").innerText = randomAuthorData;
+        document.getElementById("tweet-quote").href = twitterLink;
+        let randomColor = "rgb(";
+        randomColor +=
+          Math.floor(Math.random() * 255) +
+          "," +
+          Math.floor(Math.random() * 255) +
+          "," +
+          Math.floor(Math.random() * 255);
+        document.body.style.backgroundColor = randomColor;
+        document.getElementById("text").style.color = randomColor;
+        document.getElementById("author").style.color = randomColor;
+      }
+    </script>
+    <style>
+      .container {
+        background-color: white;
+        position: absolute;
+        top: 25%;
+        left: 25%;
+        width: 40%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center">
+      <wrapper id="quote-box">
+        <h3><i id="text" class="fa fa-quote-left py-2"></i></h3>
+        <div id="author" class="py-2"></div>
+        <button
+          id="new-quote"
+          onclick="quoteGenerator()"
+          class="btn btn-success my-2"
+        >
+          New quote
+        </button>
+        <a
+          href="#"
+          class="fa fa-twitter btn-lg fa-2x"
+          target="_blank"
+          id="tweet-quote"
+        ></a>
+      </wrapper>
+    </div>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
