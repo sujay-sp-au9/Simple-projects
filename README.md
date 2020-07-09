@@ -7,4 +7,4 @@ Roman-Number-Converter::--- Converts the given number into a roman numeral.
 Cash register::--- returns change to be provided.
 Personal portfolio page, random quote machine::--- A simple HTML project
 Markdown previewer::-- A front-end project
-Javascript calculator::-- A fron-end project
+Javascript calculator::-- A front-end project
