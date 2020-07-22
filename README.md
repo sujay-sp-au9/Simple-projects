@@ -27,3 +27,5 @@ A simple HTML project
 A front-end project
 ## Javascript calculator::--
 A front-end project
+## Drum machine::--
+A front-end-project
