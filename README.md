@@ -32,3 +32,5 @@ A front-end project
 A front-end-project
 ## Pomodoro clock::--
 A front-end-project
+## Snake game::--
+A snake eats food game built using html, css and javascript only.
