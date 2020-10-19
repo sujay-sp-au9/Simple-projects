@@ -1,0 +1,12 @@
+#editor, .preview {
+  min-height: 200px;
+}
+body {
+  background-color: #EAB543;
+}
+.preview {
+  background-color: white;
+}
+#preview img {
+  width: 100%;
+}

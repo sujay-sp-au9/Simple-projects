@@ -1,0 +1,38 @@
+body {
+  background-color: #2f3640;
+  color: white;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+button {
+  background-color: transparent;
+  color: white;
+  margin: 10px 10px;
+  padding: 10px 10px;
+}
+span {
+  font-size: 35px;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#Break-label {
+  margin: 10px 10px;
+}
+#Session-label {
+  margin: 10px 10px;
+}
+#clock-container {
+  border: 5px solid white;
+  border-radius: 30px;
+  text-align: center;
+  display: inline-block;
+  padding: 30px;
+  margin: 10px;
+}
