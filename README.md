@@ -35,4 +35,6 @@ A front-end-project
 ## Snake game::--
 A snake eats food game built using html, css and javascript only.  
 ## Youtube-clone::--  
-Youtube-clone with only HTML and CSS
+Youtube-clone with only HTML and CSS  
+## d3 Bar Chart::--  
+US GDP visualised as a bar chart using d3.
