@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    109.6deg,
+    rgba(156, 252, 248, 1) 11.2%,
+    rgba(110, 123, 251, 1) 91.1%
+  );
+}
+svg {
+  background-color: whitesmoke;
+  border: 2px solid black;
+  box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.5);
+}
+rect {
+  fill: cadetblue;
+}
+rect:hover {
+  fill: blue;
+}
