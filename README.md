@@ -38,3 +38,7 @@ A snake eats food game built using html, css and javascript only.
 Youtube-clone with only HTML and CSS  
 ## d3 Bar Chart::--  
 US GDP visualised as a bar chart using d3.
+## d3 Scatter plot::--  
+US GDP visualised as a scatter plot using d3.
+## d3 Heat map::--  
+US GDP visualised as a heat map using d3.
