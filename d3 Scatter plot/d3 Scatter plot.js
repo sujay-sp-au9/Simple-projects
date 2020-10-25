@@ -74,6 +74,10 @@ function draw(data){
            if(item[4]){
                temp = "\n\n" + item[5];
            }
-           return `${item[0]}: ${item[1]}\nYear: ${item[2]}, Time: ${item[3]}${temp}`
+           let timeMin = parseInt(item[3] / 60) - 30;
+           timeMin = (timeMin) < 10 ? '0' + timeMin : timeMin;
+           let timeSec = item[3] % 60;
+           timeSec = timeSec < 10 ? '0' + timeSec : timeSec;
+           return `${item[0]}: ${item[1]}\nYear: ${item[2]}, Time: ${timeMin}:${timeSec}${temp}`
        });
 }
