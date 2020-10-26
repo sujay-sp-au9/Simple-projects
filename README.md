@@ -1,15 +1,5 @@
-# Simple-projects
-## All posible combinations::---
-Prints all possibilities to put + or - or nothing between the numbers 1, 2, …, 9 (in this order) such that the result is always 100
-## Dice Challenge::---
-Let N be a positive odd number.
-There are N dice, numbered 1,2,…, N. For each i(1≤i≤N), when Dice i is rolled, it comes up even number(2/4/6) with probability pi and odd number(1/3/5) with probability (1−pi).
-Taro has tossed all the N dice. Find the probability of having more even numbers than odd numbers.
-Input Format
-N
-p1 p2 … pN
-Constraints
-N is an odd number. 1 ≤ N ≤ 2999 pi is a real number and has two decimal places. 0 < pi < 1
+# Simple-projects  
+
 ## Convert HTML Entities::---
 Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.
 ## Telephone number validator::---
