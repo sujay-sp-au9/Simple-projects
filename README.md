@@ -15,13 +15,13 @@ returns change to be provided.
 ## Personal portfolio page, random quote machine::---
 A simple HTML project
 ## Markdown previewer::--
-A front-end project
+A front-end project using React
 ## Javascript calculator::--
-A front-end project
+A front-end project using React
 ## Drum machine::--
-A front-end-project
+A front-end-project using React
 ## Pomodoro clock::--
-A front-end-project
+A front-end-project using React
 ## Snake game::--
 A snake eats food game built using html, css and javascript only.  
 ## Youtube-clone::--  
