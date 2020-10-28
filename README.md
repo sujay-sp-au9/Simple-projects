@@ -33,4 +33,6 @@ Data visualised as a scatter plot using d3.
 ## d3 Heat map::--  
 Data visualised as a heat map using d3.  
 ## d3 Choropleth Map::--  
-Data visualised as a Choropleth map using d3.
+Data visualised as a Choropleth map using d3.  
+## d3 Tree Map::--  
+Data visualised as a Tree map using d3.
