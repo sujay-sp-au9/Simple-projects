@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chomp Champ</title>
+    <link rel="stylesheet" href="frontendTest.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="nav">
+        <img src="https://www.linkpicture.com/q/Untitled_151.png" class="nav-items">
+        <button id="login" onclick="login()" class='btn btn-success nav-items'>Login/Sign up</button>
+        <div class="dropdown nav-items">
+            <button id="selector" onclick="myFunction()" class="btn btn-primary">Location(default: Cardiff)</button>
+            <div id="myDropdown" class="dropdown-content">
+              <button id="Cardiff" onclick="changeLocation(this.id)">Cardiff</button>
+              <button id="London" onclick="changeLocation(this.id)">London</button>
+              <button id="Rotherham" onclick="changeLocation(this.id)">Rotherham</button>
+              <button id="Merseyside" onclick="changeLocation(this.id)">Merseyside</button>
+              <button id="Manchester" onclick="changeLocation(this.id)">Manchester</button>
+            </div>
+        </div>
+    </header>
+    <header class="search-row">
+        <h4><button class="btn btn-dark">Delivery</button></h4>
+        <h4><button class="btn btn-dark">Pick-up</button></h4>
+        <div class="dropdown">
+            <input type="text" id="searchInput" name="search" placeholder="......Search" onkeyup="search(event, this.id)">
+            <div id="myDropdownSearch" class="dropdown-content"></div>
+        </div>
+    </header>
+    <main id="restaurants"></main>
+    <article id="mobile-app">
+        <h1>Download our app for IOS/Android for a better ui experience :)</h1>
+        <img src="https://i.ibb.co/PwmXxfV/charles-deluvio-p0-Sn8-X2ht-Rs-unsplash.jpg" alt="">
+        <a href="https://play.google.com/store/apps/details?id=delivery.chomp.mobile&hl=en_IN&gl=US">
+            <h3>Download</h3>
+        </a>
+    </article>
+    <footer id="footer">
+        <div class="footer-column">
+            <a href="about.html" target="_blank">Company</a>
+        </div>
+        <div class="footer-column">
+            <a href="">Careers</a>
+        </div>
+        <div class="footer-column">
+            <a href="">Social</a>
+            <img src="twitter.svg" alt="">
+            <img src="facebook.svg" alt="">
+            <img src="instagram.svg" alt="">
+        </div>
+        <div class="footer-column">
+            <a href="">Contact</a>
+        </div>
+        <div class="footer-column">
+            <p>Copyright</p>
+            <p>12.3223.asas</p>
+        </div>
+    </footer>
+    <script src="frontendTest.js"></script>
+</body>
+</html>
