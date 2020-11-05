@@ -1,4 +1,4 @@
-const URL = 'data.json';
+const URL = 'https://api.jsonbin.io/b/5f9e3e27ce4aa2289553ee69';
 
 let loc = "Cardiff";
 let searchData;
