@@ -22,6 +22,8 @@ A front-end project using React
 A front-end-project using React
 ## Pomodoro clock::--
 A front-end-project using React
+## Weather-app::--  
+A front-end-project using React
 ## Snake game::--
 A snake eats food game built using html, css and javascript only.  
 ## Youtube-clone::--  
