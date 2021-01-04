@@ -1,51 +1,43 @@
 import "./App.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import Spinner from "./components/spinner";
 import VideoList from "./components/VideoList";
 import VideoDetail from "./components/VideoDetail";
-import youtube from "./apis/youtube";
+import useVideos from "./hooks/useVideos";
 
-export default class App extends React.Component {
-  state = { searchInput: "", loading: false, videos: [], selectedVideo: null };
-  getSearchResults = async (searchInput) => {
-    this.setState({ loading: true, searchInput });
-    const results = await youtube.get("/search", {
-      params: {
-        q: searchInput,
-      },
-    });
-    this.setState({
-      loading: false,
-      videos: results.data.items,
-      selectedVideo: results.data.items[0],
-    });
+export default function App() {
+  const [searchInput, setSearchInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [videos, search] = useVideos("trending");
+  useEffect(() => {
+    setSearchInput("trending");
+  }, []);
+  const onSearchInputChange = async (input) => {
+    setSearchInput(input);
+    setLoading(true);
+    await search(input);
+    setLoading(false);
   };
-  onVideoSelect = (selectedVideo) => {
-    this.setState({ selectedVideo });
-  };
-  render() {
-    return (
-      <div className="ui container">
-        {this.state.loading ? <Spinner message="Loading..." /> : null}
-        <SearchBar onSubmit={this.getSearchResults} />
-        <h4 style={{ textAlign: "center" }}>
-          {this.state.videos.length > 0
-            ? `Found ${this.state.videos.length} videos of "${this.state.searchInput}"`
-            : null}
-        </h4>
-        <div className="video-container">
-          <div className="selected-video">
-            {this.state.selectedVideo ? (
-              <VideoDetail video={this.state.selectedVideo} />
-            ) : null}
-          </div>
-          <VideoList
-            onVideoSelect={this.onVideoSelect}
-            videos={this.state.videos}
-          />
+  useEffect(() => {
+    setSelectedVideo(videos[0]);
+  }, [videos]);
+  return (
+    <div className="ui container">
+      {loading ? <Spinner message="Loading..." /> : null}
+      <SearchBar onSubmit={onSearchInputChange} />
+      <h4 style={{ textAlign: "center" }}>
+        {videos.length > 0
+          ? `Found ${videos.length} videos of "${searchInput}"`
+          : null}
+      </h4>
+      <div className="video-container">
+        <div className="selected-video">
+          {selectedVideo ? <VideoDetail video={selectedVideo} /> : null}
         </div>
+        <VideoList onVideoSelect={setSelectedVideo} videos={videos} />
       </div>
-    );
-  }
+    </div>
+  );
 }
