@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, Input, Pagination, InputNumber } from "antd";
+import { Card, Button, Input, InputNumber, Menu, Dropdown, Space } from "antd";
+import { DownOutlined, CloseOutlined } from "@ant-design/icons";
 
 const { Search } = Input;
 
-export default function FilterSort({
-  filteredUsers,
-  setFilterOptionsOpen,
-  setPage,
-  setFilter,
-}) {
+export default function FilterSort({ filteredUsers, setPage, setFilter }) {
   const [ageLower, setAgeLower] = useState(2000);
   const [ageUpper, setAgeUpper] = useState(2000);
   const [filterAgeLower, setFilterAgeLower] = useState(2000);
   const [filterAgeUpper, setFilterAgeUpper] = useState(2020);
+  const [countries, setCountries] = useState([]);
+  const [filteredCountries, setFilteredCountries] = useState([]);
+  const [
+    debouncedSearchForCountryFilter,
+    setDebouncedSearchForCountryFilter,
+  ] = useState("");
+  const [searchTermForCountryFilter, setSearchTermForCountryFilter] = useState(
+    ""
+  );
+  const [finalCountryFilter, setFinalCountryFilter] = useState([]);
   useEffect(() => {
     let lower = Infinity;
     let upper = -Infinity;
+    let uniqueCountries = new Set();
     filteredUsers.forEach((user) => {
+      uniqueCountries.add(user.Country.toLowerCase());
       const year = new Date(user["Date of birth"]).getUTCFullYear();
       if (lower > year) {
         lower = year;
@@ -30,19 +38,61 @@ export default function FilterSort({
       setAgeUpper(upper);
       setFilterAgeLower(lower);
       setFilterAgeUpper(upper);
+      setCountries(Array.from(uniqueCountries));
     }, 1000);
   }, [filteredUsers]);
-  console.log(filterAgeUpper);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setSearchTermForCountryFilter(debouncedSearchForCountryFilter);
+    }, 1000);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [debouncedSearchForCountryFilter]);
+  useEffect(() => {
+    setFilteredCountries(
+      countries
+        .filter(
+          (country) =>
+            country.search(searchTermForCountryFilter.toLowerCase()) !== -1
+        )
+        .slice(0, 5)
+    );
+  }, [searchTermForCountryFilter, countries]);
+  const menu = (
+    <Menu>
+      {filteredCountries.map((country) => (
+        <Menu.Item
+          key={country}
+          onClick={() => setFinalCountryFilter((prev) => [...prev, country])}
+        >
+          {country}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
+  const renderedFinalCountryFilter = finalCountryFilter.map((country) => (
+    <Space align="start">
+      <p>{country}</p>
+      <CloseOutlined
+        onClick={() =>
+          setFinalCountryFilter((prev) =>
+            prev.filter((item) => item !== country)
+          )
+        }
+      />
+    </Space>
+  ));
   return (
     <div style={{ display: "flex", justifyContent: "space-evenly" }}>
       <Button
         onClick={() => {
           setFilter({
-            ageLower,
-            ageUpper,
+            filterAgeLower,
+            filterAgeUpper,
+            finalCountryFilter,
           });
           setPage(1);
-          setFilterOptionsOpen(false);
         }}
         danger
         type="primary"
@@ -106,19 +156,18 @@ export default function FilterSort({
             gap: "0.5vw",
           }}
         >
-          <Search />
-          <Button size="small">Lebanon</Button>
-          <Button size="small">Lebanon</Button>
-          <Button size="small">Lebanon</Button>
-          <Button size="small">Lebanon</Button>
-          <Button size="small">Lebanon</Button>
-          <Pagination
-            simple
-            defaultCurrent={1}
-            total={50}
-            pageSize={5}
-            onChange={function (page, pageSize) {}}
+          {renderedFinalCountryFilter}
+          <Search
+            onChange={(e) => setDebouncedSearchForCountryFilter(e.target.value)}
           />
+          <Dropdown overlay={menu}>
+            <h4
+              className="ant-dropdown-link"
+              onClick={(e) => e.preventDefault()}
+            >
+              Search <DownOutlined />
+            </h4>
+          </Dropdown>
         </div>
       </Card>
     </div>

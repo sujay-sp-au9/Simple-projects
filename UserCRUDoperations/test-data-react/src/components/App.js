@@ -12,20 +12,41 @@ const pageSize = 10;
 export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState(null);
-  const [filterOptionsOpen, setFilterOptionsOpen] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [operated, setOperated] = useState(0);
   useEffect(() => {
-    let temp = allUsers;
-    if (searchTerm.length > 0) {
-      temp = temp.filter((user) => user["Full Name"].search(searchTerm) !== -1);
+    let idx = (page - 1) * pageSize;
+    let temp = [];
+    const interval = setInterval(() => {
+      temp = allUsers.slice(idx, idx + 10);
+      if (searchTerm.length > 0) {
+        temp.push(
+          temp.filter((user) => user["Full Name"].search(searchTerm) !== -1)
+        );
+      }
+      if (filter && filter.filterAgeLower) {
+        temp.push(
+          temp.filter((user) => {
+            const year = new Date(user["Date of birth"]);
+            if (
+              year <= filter.filterAgeUpper &&
+              year >= filter.filterAgeLower
+            ) {
+              return true;
+            } else return false;
+          })
+        );
+      }
+      idx += pageSize;
+    }, 1000);
+    if (temp.length >= pageSize) {
+      setFilteredUsers(temp);
+      clearInterval(interval);
+    } else if (searchTerm.length === 0 && !filter) {
+      setFilteredUsers(allUsers);
     }
-    if (filter) {
-      temp = temp.filter();
-    }
-    setFilteredUsers(temp);
   }, [searchTerm, filter, allUsers, page]);
   useEffect(() => {
     Axios({
@@ -43,36 +64,11 @@ export default function App() {
         alignItems: "center",
       }}
     >
-      {filterOptionsOpen ? (
-        <div
-          style={{ display: "flex", justifyContent: "center", margin: "1vw" }}
-        >
-          <Button onClick={() => setFilterOptionsOpen(false)} type="primary">
-            Nevermind
-          </Button>
-        </div>
-      ) : (
-        <div
-          style={{ display: "flex", justifyContent: "center", margin: "1vw" }}
-        >
-          <Button
-            onClick={() => setFilterOptionsOpen(true)}
-            type="primary"
-            style={{ marginRight: "1vw" }}
-          >
-            Filter
-          </Button>
-          <Button type="primary">Clear filter</Button>
-        </div>
-      )}
-      {filterOptionsOpen ? (
-        <Filter
-          filteredUsers={filteredUsers}
-          setPage={setPage}
-          setFilter={setFilter}
-          setFilterOptionsOpen={setFilterOptionsOpen}
-        />
-      ) : null}
+      <Filter
+        filteredUsers={filteredUsers}
+        setPage={setPage}
+        setFilter={setFilter}
+      />
       <Search setPage={setPage} setSearchTerm={setSearchTerm} />
       <Button
         onClick={() => setOperated((prev) => prev + 1)}
