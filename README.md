@@ -26,6 +26,8 @@ A front-end-project using React
 A front-end-project using React  
 ## pics::--  
 A front-end-project using React  
+## songs ::--  
+Most basic React + Redux application  
 ## videos::--  
 A fron-end-project using React(Class and hooks version present)
 ## Snake game::--
