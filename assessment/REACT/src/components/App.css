@@ -1,0 +1,4 @@
+@import "~antd/dist/antd.css";
+.ant-menu-item {
+  font-size: 20px;
+}
